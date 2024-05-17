@@ -1,0 +1,43 @@
+
+
+.container{ 
+    border-style: solid;
+    height: 90%;
+    color:rgb(94, 92, 90)
+}
+h1{
+    
+    display: flex;
+    justify-content: center;
+    color: rgb(82, 33, 197);
+    
+}
+
+.adjustbutton{
+   position: absolute;
+   top:76%
+   
+}
+
+button{
+    
+    
+    background-color: antiquewhite;
+    border-color: red;
+    border-radius: 5px;
+    font-size: medium;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+button:hover{
+    background-color: rgb(240, 221, 115)
+}
+.btn{
+    height: 50px;
+    font-size: small;
+    font-weight: 700;
+    transition: all 0.3s;
+}
+.btn:hover{
+    transform: translateY(-10px) ;
+    background-color: rgb(240, 221, 115)
+}
