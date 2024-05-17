@@ -8,3 +8,5 @@ From Node.Js:
 -	npm install express
 -	npm install cors
 -	npm install sqlite3
+
+All the above must be installed in api folder
