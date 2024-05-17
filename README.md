@@ -9,7 +9,7 @@ From Node.Js:
 -	npm install cors
 -	npm install sqlite3
 
-All the above must be installed in api folder
+  All the above must be installed in api folder
 To access the db data in the terminal:
 cd api
 node .
