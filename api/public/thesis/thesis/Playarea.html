@@ -1,0 +1,38 @@
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thesis Game</title>
+    <link rel="stylesheet" href="./css/background3.css">
+    <link rel="stylesheet" href="./css/playarea.css">
+    </head>
+    <body>
+        <h1>Select a game to play with your friend!</h1>
+        <div class="container" id="playarea">
+           <div  id="playarea2">
+            <button class="btn" style="width: 100px;" onclick="back()">Back</button>
+            <div style="width: 100px; position: absolute; left: 50%; display: flex ; flex-direction: row;">
+                <h1 style="margin-top: -50px; position: absolute; left: -170%;" >You</h1>
+                <h1 style="margin-top: -50px;" id ="playerscore">0</h1>
+                <h1 style="margin-top: -50px; position: absolute; left: 200%;" >Friend </h1>
+                <h1 style="margin-top: -50px; position:absolute; left: 102%;" id ="friendscore">0</h1>
+                <h1 style="margin-top: -50px; border-left: solid; border-right: solid; border-width: 5px; border-color: rgb(255, 0, 0);">Score</h1>
+            </div>
+            <button class="btn" style="width: 100px; position: absolute; left:50.5%; top:15%" onclick="restart()" id="restart">Restart</button>
+            <button id = "profile" class="btn" style="width: 100px; float: right;" onclick="profile()">Profile</button>
+            <button id ="football" class="adjustbutton btn" style="left: 150px;" onclick="football()">Play Football</button>
+            <button id ="card" class="adjustbutton btn"style="left: 400px;" onclick="card()"> Play Quick draw</button>
+            <button id ="throw" class="adjustbutton btn"style="left: 670px;" onclick="shootball()"> Play Throw</button>
+            <button id = "stopwatch"class="adjustbutton btn"style="left: 925px;" onclick="stopwatch()"> Stopwatch</button>
+            <button id = "catch"class="adjustbutton btn"style="left: 1200px; width: 100px;" onclick="catcH()"> Catch</button>
+           </div>
+          
+           
+           
+            
+        </div>
+    </body>
+    
+    <script src="./js/pixi.min.js"></script>
+    <script src="./js/playarea.js"></script>
+</html>
