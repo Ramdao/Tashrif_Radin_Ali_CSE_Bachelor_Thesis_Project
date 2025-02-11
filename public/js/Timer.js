@@ -15,35 +15,35 @@ let answers =["a1","a2","a3"]
 var cards = new Audio("Assests\\sounds\\flipcard-91468.mp3")
 var card2 = new Audio("Assests\\sounds\\cardsound32562-37691.mp3")
 
-const request = new XMLHttpRequest();
-request.open("GET", "http://localhost:5000/user");
+// const request = new XMLHttpRequest();
+// request.open("GET", "http://localhost:5000/user");
     
-    request.onload = function() {
+//     request.onload = function() {
         
-        if (request.status == 200) {
-            const response = JSON.parse(request.responseText);
-            var user = response[0];
-            let searchuser = JSON.parse(localStorage.getItem("user"))
-            for (let i =0; i<response.length;i++){
-                if(response[i].email==searchuser){
-                    user=response[i]
-                }
-            }
-            localStorage.setItem("question", JSON.stringify(user.questions));
-            localStorage.setItem("answer", JSON.stringify(user.answers));
+//         if (request.status == 200) {
+//             const response = JSON.parse(request.responseText);
+//             var user = response[0];
+//             let searchuser = JSON.parse(localStorage.getItem("user"))
+//             for (let i =0; i<response.length;i++){
+//                 if(response[i].email==searchuser){
+//                     user=response[i]
+//                 }
+//             }
+//             localStorage.setItem("question", JSON.stringify(user.questions));
+//             localStorage.setItem("answer", JSON.stringify(user.answers));
             
            
-        } else {
-            console.error("Request failed with status:", request.status);
-        }
+//         } else {
+//             console.error("Request failed with status:", request.status);
+//         }
        
-    };
+//     };
     
-    request.onerror = function() {
-        console.error("Network error occurred");
-    };
+//     request.onerror = function() {
+//         console.error("Network error occurred");
+//     };
 
-    request.send();
+//     request.send();
 
 
 function back(){
@@ -57,20 +57,23 @@ function back(){
 }
 
 
-questions=JSON.parse(localStorage.getItem("question")) 
-answers=JSON.parse(localStorage.getItem("answer")) 
+// questions=JSON.parse(localStorage.getItem("question")) 
+// answers=JSON.parse(localStorage.getItem("answer")) 
 
-questions = questions.replace(/\\/g, '');
-answers = answers.replace(/\\/g, '');
+// questions = questions.replace(/\\/g, '');
+// answers = answers.replace(/\\/g, '');
 
-questions=JSON.parse(questions)
-answers=JSON.parse(answers)
+// questions=JSON.parse(questions)
+// answers=JSON.parse(answers)
 
 // if (questions.length == 0 || answers.length == 0){
 //     questions =["q1","q2","q3"];
 //     answers =["a1","a2","a3"];
 //     alert("Data invalid");
 // }
+var question = JSON.parse(localStorage.getItem("question")) || ["q1", "q2", "q3"];
+var answer = JSON.parse(localStorage.getItem("answer")) || ["a1", "a2", "a3"];
+var avatar = JSON.parse(localStorage.getItem("avatar")) || "https://pixijs.com/assets/bunny.png";
 
 var correct = Math.floor(Math.random()*2);
 var check = Math.floor(Math.random()*questions.length)
