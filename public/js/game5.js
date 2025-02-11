@@ -1,61 +1,15 @@
 window.onload = function() {
-    if(!window.location.hash) {
+    if (!window.location.hash) {
         window.location = window.location + '#loaded';
         window.location.reload();
     }
 }
-document.getElementById("Restart").disabled=true;
-var question = ["q1", "q2", "q3"];
-var answer = ["a1", "a2", "a3"];
+
+document.getElementById("Restart").disabled = true;
+var question = JSON.parse(localStorage.getItem("question")) || ["q1", "q2", "q3"];
+var answer = JSON.parse(localStorage.getItem("answer")) || ["a1", "a2", "a3"];
+var avatar = JSON.parse(localStorage.getItem("avatar")) || "https://pixijs.com/assets/bunny.png";
 var winner = true;
-const request = new XMLHttpRequest();
-request.open("GET", "https://tashrif-radin-ali-cse-bachelor-thesis.onrender.com/user");
-var kick = new Audio("Assests\\sounds\\soccer-kick-6235.mp3")
-    request.onload = function() {
-        
-        if (request.status == 200) {
-            const response = JSON.parse(request.responseText);
-            var user = response[0];
-            let searchuser = JSON.parse(localStorage.getItem("user"))
-            for (let i =0; i<response.length;i++){
-                if(response[i].email==searchuser){
-                    user=response[i]
-                }
-            }
-            localStorage.setItem("question", JSON.stringify(user.questions));
-            localStorage.setItem("answer", JSON.stringify(user.answers));
-            localStorage.setItem("avatar",JSON.stringify(user.avatar))
-            
-           
-        } else {
-            console.error("Request failed with status:", request.status);
-        }
-       
-    };
-    
-    request.onerror = function() {
-        console.error("Network error occurred");
-    };
-
-    request.send();
-
-question=JSON.parse(localStorage.getItem("question")) 
-answer=JSON.parse(localStorage.getItem("answer")) 
-avatar=JSON.parse(localStorage.getItem("avatar"))
-
-question = question.replace(/\\/g, '');
-answer = answer.replace(/\\/g, '');
-
-question=JSON.parse(question)
-answer=JSON.parse(answer)
-
-// if (question.length == 0 || answer.length == 0){
-//     question =["q1","q2","q3"];
-//     answer =["a1","a2","a3"];
-//     avatar = "https://pixijs.com/assets/bunny.png"
-//     alert("Data invalid");
-// }
-
 
 var randq = Math.floor(Math.random() * question.length);
 var randa = Math.floor(Math.random() * answer.length);
@@ -65,7 +19,7 @@ let bulletspeed = 10;
 var score = 0;
 let textCounter = 0;
 let textSpawnInterval = 200; // Adjust the interval as needed
-goal=5;
+goal = 5;
 document.getElementById("question").innerHTML = question[randq];
 
 const app = new PIXI.Application({ backgroundAlpha: 0, resizeTo: window });
@@ -77,8 +31,7 @@ document.querySelector("#Gamearea").addEventListener("pointerdown", fireBullet);
 const container = new PIXI.Container();
 app.stage.addChild(container);
 
-let texture = PIXI.Texture.from("https://pixijs.com/assets/bunny.png");
-texture=PIXI.Texture.from(avatar);
+let texture = PIXI.Texture.from(avatar);
 const style = new PIXI.TextStyle({
     fill: ["red"],
 });
@@ -86,24 +39,21 @@ const style = new PIXI.TextStyle({
 const player = new PIXI.Sprite(texture);
 player.anchor.set(0.5);
 player.position.set(app.screen.width / 2, app.screen.height / 2);
-player.width=40;
-player.height=50;
+player.width = 40;
+player.height = 50;
 container.addChild(player);
 
 let keys = {};
 
 function keydown(e) {
     keys[e.keyCode] = true;
-    
 }
 
 function keyup(e) {
     keys[e.keyCode] = false;
-    
 }
-window.addEventListener("keydown",keydown);
-window.addEventListener("keyup",keyup);
-
+window.addEventListener("keydown", keydown);
+window.addEventListener("keyup", keyup);
 
 function testForAABB(object1, object2) {
     const bounds1 = object1.getBounds();
@@ -116,14 +66,10 @@ function testForAABB(object1, object2) {
 }
 
 function fireBullet(e) {
-    kick.play();
     let bullet = createBullet();
-
     bullet.vx = Math.sin(player.rotation) * bulletspeed;
     bullet.vy = -Math.cos(player.rotation) * bulletspeed;
-
     bullets.push(bullet);
-
     textCounter = 0; // Reset the counter after firing a bullet
 }
 
@@ -164,13 +110,10 @@ function updateBullets(delta) {
 
         for (let j = 0; j < basictexts.length; j++) {
             if (testForAABB(bullets[i], basictexts[j])) {
-                
-                if(answer.indexOf(basictexts[j].text)===question.indexOf(document.getElementById("question").innerHTML)){
-                    
+                if (answer.indexOf(basictexts[j].text) === question.indexOf(document.getElementById("question").innerHTML)) {
                     score += 1;
-                } 
-                else{
-                    score -=1;
+                } else {
+                    score -= 1;
                 }
                 randq = Math.floor(Math.random() * question.length);
                 document.getElementById("question").innerHTML = question[randq];
@@ -189,35 +132,34 @@ function updateBullets(delta) {
     }
 }
 
-function restart(){
-    if (winner){
+function restart() {
+    if (winner) {
         var data = {
-            "email":JSON.parse(localStorage.getItem("user")),
-            "xp":5
-        } 
+            "email": JSON.parse(localStorage.getItem("user")),
+            "xp": 5
+        }
         const request = new XMLHttpRequest();
         request.open("POST", "http://localhost:5000/user/add-xp");
-    
+
         request.setRequestHeader("Access-Control-Allow-Credentials", "true");
         request.setRequestHeader("Content-Type", "application/json");
-    
+
         request.send(JSON.stringify(data));
 
-        localStorage.setItem("score",parseInt(localStorage.getItem("score"))+1)
-    } else{
-        localStorage.setItem("friendscore",parseInt(localStorage.getItem("friendscore"))+1)
+        localStorage.setItem("score", parseInt(localStorage.getItem("score")) + 1)
+    } else {
+        localStorage.setItem("friendscore", parseInt(localStorage.getItem("friendscore")) + 1)
     }
     document.getElementById("back").disabled = false;
-    score=0;
+    score = 0;
     document.getElementById("counter").innerHTML = score;
-    document.getElementById("restart").style.backgroundColor="rgb(223, 90, 90)";
-    
+    document.getElementById("restart").style.backgroundColor = "rgb(223, 90, 90)";
 }
-function back(){
-   
-    window.location="Playarea.html";
-    
+
+function back() {
+    window.location = "Playarea.html";
 }
+
 app.ticker.add((delta) => {
     randa = Math.floor(Math.random() * answer.length);
 
@@ -265,22 +207,20 @@ app.ticker.add((delta) => {
     }
 
     updateBullets(delta);
-    if (score>=goal){
-
-        textSpawnInterval=0;
+    if (score >= goal) {
+        textSpawnInterval = 0;
         document.getElementById("counter").innerHTML = "You Won!"
-        document.getElementById("Restart").style.backgroundColor="rgb(9, 209, 101)";
-        document.getElementById("Restart").disabled=false;
+        document.getElementById("Restart").style.backgroundColor = "rgb(9, 209, 101)";
+        document.getElementById("Restart").disabled = false;
         document.getElementById("back").disabled = true;
-        
-    } 
-    else if(score<=-3){
-        textSpawnInterval=0;
+
+    } else if (score <= -3) {
+        textSpawnInterval = 0;
         document.getElementById("counter").innerHTML = "Your friend Won!"
-        document.getElementById("Restart").style.backgroundColor="rgb(9, 209, 101)";
-        document.getElementById("Restart").disabled=false;
+        document.getElementById("Restart").style.backgroundColor = "rgb(9, 209, 101)";
+        document.getElementById("Restart").disabled = false;
         document.getElementById("back").disabled = true;
         winner = false;
     }
-    
+
 });
