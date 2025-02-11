@@ -107,31 +107,33 @@ window.onload = function() {
             document.getElementById("btn2").disabled = false;
         }
     }
+    
 
-    function clearQ() {
-        count = 0;
-        let data = {
-            "email": JSON.parse(localStorage.getItem("user")),
-        };
-
-        const request = new XMLHttpRequest();
-        request.open("POST", "https://tashrif-radin-ali-cse-bachelor-thesis.onrender.com/user/remove-question");
-
-        request.setRequestHeader("Access-Control-Allow-Credentials", "true");
-        request.setRequestHeader("Content-Type", "application/json");
-
-        request.send(JSON.stringify(data));
-    }
-
-    function howto() {
-        window.location = "Howto.html";
-    }
-
-    function game2() {
-        window.location = "Playarea.html";
-    }
-
-    function back() {
-        window.location = "index.html";
-    }
+    
 };
+function clearQ() {
+    count = 0;
+    let data = {
+        "email": JSON.parse(localStorage.getItem("user")),
+    };
+
+    const request = new XMLHttpRequest();
+    request.open("POST", "https://tashrif-radin-ali-cse-bachelor-thesis.onrender.com/user/remove-question");
+
+    request.setRequestHeader("Access-Control-Allow-Credentials", "true");
+    request.setRequestHeader("Content-Type", "application/json");
+
+    request.send(JSON.stringify(data));
+}
+
+function howto() {
+    window.location = "Howto.html";
+}
+
+function game2() {
+    window.location = "Playarea.html";
+}
+
+function back() {
+    window.location = "index.html";
+}
