@@ -45,11 +45,11 @@ question=JSON.parse(localStorage.getItem("question"))
 answer=JSON.parse(localStorage.getItem("answer")) 
 avatar=JSON.parse(localStorage.getItem("avatar"))
 
-question = question.replace(/\\/g, '');
-answer = answer.replace(/\\/g, '');
+// question = question.replace(/\\/g, '');
+// answer = answer.replace(/\\/g, '');
 
-question=JSON.parse(question)
-answer=JSON.parse(answer)
+// question=JSON.parse(question)
+// answer=JSON.parse(answer)
 
 if (question.length == 0 || answer.length == 0){
     question =["q1","q2","q3"];
