@@ -71,9 +71,9 @@ function back(){
 //     answers =["a1","a2","a3"];
 //     alert("Data invalid");
 // }
-var question = JSON.parse(localStorage.getItem("question")) || ["q1", "q2", "q3"];
-var answer = JSON.parse(localStorage.getItem("answer")) || ["a1", "a2", "a3"];
-var avatar = JSON.parse(localStorage.getItem("avatar")) || "https://pixijs.com/assets/bunny.png";
+ question = JSON.parse(localStorage.getItem("question")) 
+ answer = JSON.parse(localStorage.getItem("answer")) 
+
 
 var correct = Math.floor(Math.random()*2);
 var check = Math.floor(Math.random()*questions.length)
