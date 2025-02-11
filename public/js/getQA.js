@@ -82,7 +82,7 @@ function submit(){
     request.send(JSON.stringify(data));
 
 
-request.open("GET", "http://localhost:5000/user");
+request.open("GET", "https://tashrif-radin-ali-cse-bachelor-thesis.onrender.com/user");
     
     request.onload = function() {
         
