@@ -54,14 +54,14 @@ function register(){
     
     
         request.send(JSON.stringify(data));
-        window.location="Login.html";
+        window.location="index.html";
 
     }
        
     }
        
     function back(){
-        window.location="Login.html";
+        window.location="index.html";
     }
 
     

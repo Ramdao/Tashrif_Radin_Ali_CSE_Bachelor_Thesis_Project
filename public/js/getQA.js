@@ -159,5 +159,5 @@ function game2(){
 }
 
 function back(){
-    window.location="Login.html";
+    window.location="index.html";
 }
