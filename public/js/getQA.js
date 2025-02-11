@@ -2,31 +2,31 @@
     let q = [];
     let a = [];
 
-    const request = new XMLHttpRequest();
-    request.open("GET", "https://tashrif-radin-ali-cse-bachelor-thesis.onrender.com/user");
+    // const request = new XMLHttpRequest();
+    // request.open("GET", "https://tashrif-radin-ali-cse-bachelor-thesis.onrender.com/user");
     
-    request.onload = function() {
-        if (request.status == 200) {
-            const response = JSON.parse(request.responseText);
-            let user = response[0];
-            let searchuser = JSON.parse(localStorage.getItem("user"));
-            for (let i = 0; i < response.length; i++) {
-                if (response[i].email == searchuser) {
-                    user = response[i];
-                }
-            }
-            localStorage.setItem("question", JSON.stringify(user.questions));
-            localStorage.setItem("answer", JSON.stringify(user.answers));
-        } else {
-            console.error("Request failed with status:", request.status);
-        }
-    };
+    // request.onload = function() {
+    //     if (request.status == 200) {
+    //         const response = JSON.parse(request.responseText);
+    //         let user = response[0];
+    //         let searchuser = JSON.parse(localStorage.getItem("user"));
+    //         for (let i = 0; i < response.length; i++) {
+    //             if (response[i].email == searchuser) {
+    //                 user = response[i];
+    //             }
+    //         }
+    //         localStorage.setItem("question", JSON.stringify(user.questions));
+    //         localStorage.setItem("answer", JSON.stringify(user.answers));
+    //     } else {
+    //         console.error("Request failed with status:", request.status);
+    //     }
+    // };
     
-    request.onerror = function() {
-        console.error("Network error occurred");
-    };
+    // request.onerror = function() {
+    //     console.error("Network error occurred");
+    // };
 
-    request.send();
+    // request.send();
 
     let question = JSON.parse(localStorage.getItem("question"));
     let answer = JSON.parse(localStorage.getItem("answer"));
@@ -49,8 +49,7 @@
             a.push(document.getElementById("Answer").value);
         }
 
-        document.getElementById("Question").value = "";
-        document.getElementById("Answer").value = "";
+   
     }
 
     function submit() {
