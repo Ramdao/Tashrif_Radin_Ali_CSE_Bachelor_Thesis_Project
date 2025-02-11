@@ -51,12 +51,12 @@ answer = answer.replace(/\\/g, '');
 question=JSON.parse(question)
 answer=JSON.parse(answer)
 
-if (question.length == 0 || answer.length == 0){
-    question =["q1","q2","q3"];
-    answer =["a1","a2","a3"];
-    avatar = "https://pixijs.com/assets/bunny.png"
-    alert("Data invalid");
-}
+// if (question.length == 0 || answer.length == 0){
+//     question =["q1","q2","q3"];
+//     answer =["a1","a2","a3"];
+//     avatar = "https://pixijs.com/assets/bunny.png"
+//     alert("Data invalid");
+// }
 
 var basictexts = [];
 dropspeed =1.5;

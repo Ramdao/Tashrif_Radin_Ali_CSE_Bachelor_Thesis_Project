@@ -66,11 +66,11 @@ answers = answers.replace(/\\/g, '');
 questions=JSON.parse(questions)
 answers=JSON.parse(answers)
 
-if (questions.length == 0 || answers.length == 0){
-    questions =["q1","q2","q3"];
-    answers =["a1","a2","a3"];
-    alert("Data invalid");
-}
+// if (questions.length == 0 || answers.length == 0){
+//     questions =["q1","q2","q3"];
+//     answers =["a1","a2","a3"];
+//     alert("Data invalid");
+// }
 
 var correct = Math.floor(Math.random()*2);
 var check = Math.floor(Math.random()*questions.length)
