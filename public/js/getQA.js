@@ -28,20 +28,20 @@
 
     // request.send();
 
-    let question = JSON.parse(localStorage.getItem("question"));
-    let answer = JSON.parse(localStorage.getItem("answer"));
+    // let question = JSON.parse(localStorage.getItem("question"));
+    // let answer = JSON.parse(localStorage.getItem("answer"));
 
-    question = question.replace(/\\/g, '');
-    answer = answer.replace(/\\/g, '');
+    // question = question.replace(/\\/g, '');
+    // answer = answer.replace(/\\/g, '');
 
-    question = JSON.parse(question);
-    answer = JSON.parse(answer);
+    // question = JSON.parse(question);
+    // answer = JSON.parse(answer);
 
-    document.getElementById("btn2").disabled = true;
+    // document.getElementById("btn2").disabled = true;
 
-    if (question.length >= 2) {
-        document.getElementById("btn2").disabled = false;
-    }
+    // if (question.length >= 2) {
+    //     document.getElementById("btn2").disabled = false;
+    // }
 
     function next() {
         if (document.getElementById("Question").value != "" && document.getElementById("Answer").value != "") {
