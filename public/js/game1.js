@@ -56,6 +56,10 @@ var winner = true;
 // question=JSON.parse(question)
 // answer=JSON.parse(answer)
 avatar = "https://pixijs.com/assets/bunny.png"
+question = JSON.parse(localStorage.getItem("question")) || ["q1", "q2", "q3"];
+answer = JSON.parse(localStorage.getItem("answer")) || ["a1", "a2", "a3"];
+
+var avatar = JSON.parse(localStorage.getItem("avatar")) || "https://pixijs.com/assets/bunny.png";
 if (question.length == 0 || answer.length == 0 || avatar == ""){
     question =["q1","q2","q3"];
     answer =["a1","a2","a3"];

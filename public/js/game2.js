@@ -50,7 +50,9 @@ avatar=JSON.parse(localStorage.getItem("avatar"))
 
 // question=JSON.parse(question)
 // answer=JSON.parse(answer)
-
+var question = JSON.parse(localStorage.getItem("question")) || ["q1", "q2", "q3"];
+var answer = JSON.parse(localStorage.getItem("answer")) || ["a1", "a2", "a3"];
+var avatar = JSON.parse(localStorage.getItem("avatar")) || "https://pixijs.com/assets/bunny.png";
 if (question.length == 0 || answer.length == 0){
     question =["q1","q2","q3"];
     answer =["a1","a2","a3"];
