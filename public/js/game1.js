@@ -15,7 +15,7 @@ var wronggoal = new Audio("Assests\\sounds\\wronggoal.mp3")
 var winner = true;
 
 const request = new XMLHttpRequest();
-request.open("GET", "http://localhost:5000/user");
+request.open("GET", "https://tashrif-radin-ali-cse-bachelor-thesis.onrender.com/user");
     
     request.onload = function() {
         
@@ -238,7 +238,7 @@ function restart(){
             "xp":5
         } 
         const request = new XMLHttpRequest();
-        request.open("POST", "http://localhost:5000/user/add-xp");
+        request.open("POST", "https://tashrif-radin-ali-cse-bachelor-thesis.onrender.com/user/add-xp");
     
         request.setRequestHeader("Access-Control-Allow-Credentials", "true");
         request.setRequestHeader("Content-Type", "application/json");

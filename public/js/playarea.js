@@ -49,7 +49,7 @@ function restart(){
 
 
 const request = new XMLHttpRequest();
-request.open("GET", "http://localhost:5000/user");
+request.open("GET", "https://tashrif-radin-ali-cse-bachelor-thesis.onrender.com/user"); //http://localhost:5000/user
 
 request.onload = function() {
     if (request.status == 200) {

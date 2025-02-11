@@ -11,7 +11,7 @@ function register(){
         return;
     } else {
         const request = new XMLHttpRequest();
-        request.open("GET", "http://localhost:5000/user");
+        request.open("GET", "https://tashrif-radin-ali-cse-bachelor-thesis.onrender.com/user");
     
         request.onload = function() {
             if (request.status == 200) {
@@ -47,7 +47,7 @@ function register(){
             "password":document.getElementById("Password").value,
         } 
         const request = new XMLHttpRequest();
-        request.open("POST", "http://localhost:5000/user-create");
+        request.open("POST", "https://tashrif-radin-ali-cse-bachelor-thesis.onrender.com/user-create");
     
         request.setRequestHeader("Access-Control-Allow-Credentials", "true");
         request.setRequestHeader("Content-Type", "application/json");

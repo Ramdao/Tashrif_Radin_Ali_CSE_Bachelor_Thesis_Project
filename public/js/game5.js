@@ -9,7 +9,7 @@ var question = ["q1", "q2", "q3"];
 var answer = ["a1", "a2", "a3"];
 var winner = true;
 const request = new XMLHttpRequest();
-request.open("GET", "http://localhost:5000/user");
+request.open("GET", "https://tashrif-radin-ali-cse-bachelor-thesis.onrender.com/user");
 var kick = new Audio("Assests\\sounds\\soccer-kick-6235.mp3")
     request.onload = function() {
         

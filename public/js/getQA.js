@@ -3,7 +3,7 @@ q=[]
 a=[]
 
 const request = new XMLHttpRequest();
-request.open("GET", "http://localhost:5000/user");
+request.open("GET", "https://tashrif-radin-ali-cse-bachelor-thesis.onrender.com/user");
     
     request.onload = function() {
         
@@ -73,7 +73,7 @@ function submit(){
         "answers":JSON.stringify(a),
     } 
     const request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:5000/user/add-question");
+    request.open("POST", "https://tashrif-radin-ali-cse-bachelor-thesis.onrender.com/user/add-question");
 
     request.setRequestHeader("Access-Control-Allow-Credentials", "true");
     request.setRequestHeader("Content-Type", "application/json");
@@ -137,7 +137,7 @@ function clearQ(){
         "email":JSON.parse(localStorage.getItem("user")),
     } 
     const request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:5000/user/remove-question");
+    request.open("POST", "https://tashrif-radin-ali-cse-bachelor-thesis.onrender.com/user/remove-question");
 
     request.setRequestHeader("Access-Control-Allow-Credentials", "true");
     request.setRequestHeader("Content-Type", "application/json");

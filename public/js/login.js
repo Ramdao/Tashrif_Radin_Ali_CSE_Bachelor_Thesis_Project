@@ -4,7 +4,7 @@ localStorage.setItem("friendscore",0);
 
 function login() {
     const request = new XMLHttpRequest();
-    request.open("GET", "http://localhost:5000/user");
+    request.open("GET", "https://tashrif-radin-ali-cse-bachelor-thesis.onrender.com/user");
 
     request.onload = function() {
         if (request.status == 200) {
