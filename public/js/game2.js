@@ -6,23 +6,61 @@ window.onload = function() {
 }
 document.getElementById("restart").disabled=true;
 var score = 0;
-var question = JSON.parse(localStorage.getItem("question")) || ["q1", "q2", "q3"];
-var answer = JSON.parse(localStorage.getItem("answer")) || ["a1", "a2", "a3"];
-var avatar = JSON.parse(localStorage.getItem("avatar")) || "https://pixijs.com/assets/bunny.png";
+var question = ["q1", "q2", "q3"];
+var answer = ["a1", "a2", "a3"];
 var winner = true;
 var catchnoise = new Audio("Assests\\sounds\\ping-pong-ball.mp3")
-var cathnoise2 = new Audio ("Assests\\sounds\\ball-bounce-94853.mp3");
+var cathnoise2 = new Audio ("Assests\\sounds\\ball-bounce-94853.mp3")
+const request = new XMLHttpRequest();
+// request.open("GET", "https://tashrif-radin-ali-cse-bachelor-thesis.onrender.com/user");
+    
+//     request.onload = function() {
+        
+//         if (request.status == 200) {
+//             const response = JSON.parse(request.responseText);
+//             var user = response[0];
+//             let searchuser = JSON.parse(localStorage.getItem("user"))
+//             for (let i =0; i<response.length;i++){
+//                 if(response[i].email==searchuser){
+//                     user=response[i]
+//                 }
+//             }
+//             localStorage.setItem("question", JSON.stringify(user.questions));
+//             localStorage.setItem("answer", JSON.stringify(user.answers));
+//             localStorage.setItem("avatar",JSON.stringify(user.avatar))
+           
+//         } else {
+//             console.error("Request failed with status:", request.status);
+//         }
+       
+//     };
+    
+//     request.onerror = function() {
+//         console.error("Network error occurred");
+//     };
 
-if (question.length == 0 || answer.length == 0) {
-    question = ["q1", "q2", "q3"];
-    answer = ["a1", "a2", "a3"];
-    avatar = "https://pixijs.com/assets/bunny.png";
+//     request.send();
+
+question=JSON.parse(localStorage.getItem("question")) 
+answer=JSON.parse(localStorage.getItem("answer")) 
+avatar=JSON.parse(localStorage.getItem("avatar"))
+
+question = question.replace(/\\/g, '');
+answer = answer.replace(/\\/g, '');
+
+question=JSON.parse(question)
+answer=JSON.parse(answer)
+
+if (question.length == 0 || answer.length == 0){
+    question =["q1","q2","q3"];
+    answer =["a1","a2","a3"];
+    avatar = "https://pixijs.com/assets/bunny.png"
     alert("Data invalid");
 }
 
 var basictexts = [];
-dropspeed = 1.5;
-sec = 30;
+dropspeed =1.5;
+sec =30;
 
 var randq = Math.floor(Math.random() * question.length);
 var randa = Math.floor(Math.random() * answer.length);
@@ -33,7 +71,8 @@ const container = new PIXI.Container();
 app.stage.addChild(container);
 
 let keys = {}; // for W A S D movement
-let texture = PIXI.Texture.from(avatar);
+let texture = PIXI.Texture.from("https://pixijs.com/assets/bunny.png");
+texture=PIXI.Texture.from(avatar);
 
 function createText() {
     const style = new PIXI.TextStyle({
@@ -53,9 +92,10 @@ function createText() {
 const player = new PIXI.Sprite(texture);
 player.anchor.set(0.5);
 player.position.set(app.screen.width / 2, 700);
-player.width = 40;
-player.height = 50;
+player.width=40;
+player.height=50;
 container.addChild(player);
+
 
 window.addEventListener("keydown", keydown);
 window.addEventListener("keyup", keyup);
@@ -79,57 +119,63 @@ function testForAABB(object1, object2) {
     );
 }
 
-function restart() {
-    if (winner) {
+
+
+function restart(){
+    if (winner){
         var data = {
-            "email": JSON.parse(localStorage.getItem("user")),
-            "xp": 5
-        };
+            "email":JSON.parse(localStorage.getItem("user")),
+            "xp":5
+        } 
         const request = new XMLHttpRequest();
         request.open("POST", "https://tashrif-radin-ali-cse-bachelor-thesis.onrender.com/user/add-xp");
-
+    
         request.setRequestHeader("Access-Control-Allow-Credentials", "true");
         request.setRequestHeader("Content-Type", "application/json");
-
+    
+    
         request.send(JSON.stringify(data));
-
-        localStorage.setItem("score", parseInt(localStorage.getItem("score")) + 1);
+        
+        
+        localStorage.setItem("score",parseInt(localStorage.getItem("score"))+1)
     } else {
-        localStorage.setItem("friendscore", parseInt(localStorage.getItem("friendscore")) + 1);
+        localStorage.setItem("friendscore",parseInt(localStorage.getItem("friendscore"))+1)
     }
-
-    for (let i = basictexts.length - 1; i >= 0; i--) {
+    
+    
+    for(let i = basictexts.length - 1; i >= 0; i--){
         container.removeChild(basictexts[i]);
         basictexts.splice(i, 1);
     }
     createText();
-    dropspeed = 1.5;
-    sec = 30;
-    score = 0;
-    document.getElementById("back").disabled = false;
-    document.getElementById("restart").style.backgroundColor = "rgb(223, 90, 90)";
-    document.getElementById("restart").disabled = true;
+    dropspeed=1.5;
+    sec=30;
+    score=0;
+    document.getElementById("back").disabled=false;
+    document.getElementById("restart").style.backgroundColor="rgb(223, 90, 90)";
+    document.getElementById("restart").disabled=true;
     document.getElementById("counter").innerHTML = score;
-    winner = true;
+    winner=true;
+}
+function back(){
+    window.location="Playarea.html";
 }
 
-function back() {
-    window.location = "Playarea.html";
-}
 
-counter = 0;
+counter =0;
 app.ticker.add((delta) => {
-    if (counter == 0) {
-        createText();
-        counter += 1;
-    }
+    if (counter==0){
+      createText();
+      counter+=1;
+    } 
+    
 
     for (let i = basictexts.length - 1; i >= 0; i--) {
         basictexts[i].y += dropspeed;
         if (basictexts[i].y >= app.screen.height) {
             container.removeChild(basictexts[i]);
             basictexts.splice(i, 1);
-            counter -= 1;
+            counter-=1;
         }
     }
 
@@ -144,37 +190,37 @@ app.ticker.add((delta) => {
 
     for (let i = 0; i < basictexts.length; i++) {
         if (testForAABB(player, basictexts[i])) {
-            if (randa == randq) {
+
+            if (randa==randq){
                 catchnoise.play();
                 container.removeChild(basictexts[i]);
                 basictexts.splice(i, 1);
-                counter -= 1;
-                score += 1;
+                counter-=1;
+                score+=1
                 randq = Math.floor(Math.random() * question.length);
-            } else {
+            } else{
                 cathnoise2.play();
                 container.removeChild(basictexts[i]);
                 basictexts.splice(i, 1);
-                counter -= 1;
-                score -= 1;
+                counter-=1;
+                score-=1
             }
             document.getElementById("counter").innerHTML = score;
         }
     }
-
-    if (score >= 2) {
-        dropspeed = 2;
+    if (score>=2){
+        dropspeed=2
     }
-    if (score >= 5) {
-        document.getElementById("restart").disabled = false;
-        document.getElementById("back").disabled = true;
-        dropspeed = 0;
+    if (score>=5){
+        document.getElementById("restart").disabled=false;
+        document.getElementById("back").disabled=true;
+        dropspeed=0;
         document.getElementById("result").innerHTML = "You won!";
-    } else if (score < -3) {
-        document.getElementById("restart").disabled = false;
-        document.getElementById("back").disabled = true;
-        winner = false;
-        dropspeed = 0;
+    } else if (score<-3){
+        document.getElementById("restart").disabled=false;
+        document.getElementById("back").disabled=true;
+        winner=false;
+        dropspeed= 0;
         document.getElementById("result").innerHTML = "Your Friend won!";
     }
-});
+}); 
